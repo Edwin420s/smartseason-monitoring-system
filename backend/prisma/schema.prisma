@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  AGENT
+}
+
+enum Stage {
+  PLANTED
+  GROWING
+  READY
+  HARVESTED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  assignedFields Field[] @relation("AgentFields")
+  createdFields  Field[] @relation("AdminFields")
+  updates        FieldUpdate[]
+}
+
+model Field {
+  id           String   @id @default(uuid())
+  name         String
+  cropType     String
+  plantingDate DateTime
+  currentStage Stage    @default(PLANTED)
+
+  assignedAgentId String
+  assignedAgent   User     @relation("AgentFields", fields: [assignedAgentId], references: [id])
+
+  createdById String
+  createdBy   User     @relation("AdminFields", fields: [createdById], references: [id])
+
+  // GPS coordinates for the field (optional)
+  locationLat Float?
+  locationLng Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  updates FieldUpdate[]
+}
+
+model FieldUpdate {
+  id        String   @id @default(uuid())
+  fieldId   String
+  field     Field    @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  updatedById String
+  updatedBy   User     @relation(fields: [updatedById], references: [id])
+
+  stage   Stage
+  notes   String?
+
+  // Verification data
+  imageUrl  String?
+  latitude  Float?
+  longitude Float?
+
+  createdAt DateTime @default(now())
+}
