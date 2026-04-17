@@ -1,3 +1,351 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =============================================
+   SMARTSEASON CUSTOM STYLES
+   ============================================= */
+
+/* ----- CSS Variables (Theme) ----- */
+:root {
+  --primary: #16a34a;        /* green-600 */
+  --primary-light: #22c55e;  /* green-500 */
+  --primary-dark: #15803d;   /* green-700 */
+  --primary-bg: #f0fdf4;     /* green-50 */
+  
+  --accent: #eab308;         /* yellow-500 */
+  --accent-light: #fef08a;   /* yellow-200 */
+  --accent-dark: #a16207;    /* yellow-800 */
+  
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  
+  --transition-base: all 0.2s ease-in-out;
+}
+
+/* ----- Base Styles ----- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-green-500 ring-offset-2;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+/* ----- Custom Component Classes ----- */
+@layer components {
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5;
+  }
+  
+  /* Gradient backgrounds */
+  .bg-gradient-green {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  }
+  
+  .bg-gradient-farm {
+    background: linear-gradient(145deg, #f0fdf4 0%, #dcfce7 100%);
+  }
+  
+  /* Status badge variants (fallback if not using React component) */
+  .badge-active {
+    @apply bg-green-100 text-green-800 border border-green-200;
+  }
+  
+  .badge-at-risk {
+    @apply bg-yellow-100 text-yellow-800 border border-yellow-200;
+  }
+  
+  .badge-completed {
+    @apply bg-gray-100 text-gray-800 border border-gray-200;
+  }
+  
+  /* Button variants */
+  .btn-primary {
+    @apply bg-green-600 text-white px-4 py-2 rounded-lg font-medium 
+           hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 
+           transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-medium
+           hover:bg-gray-50 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 
+           transition-colors;
+  }
+  
+  .btn-ghost {
+    @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md 
+           transition-colors;
+  }
+  
+  /* Form input styles */
+  .input-field {
+    @apply w-full p-2.5 border border-gray-300 rounded-lg 
+           focus:ring-2 focus:ring-green-500 focus:border-transparent 
+           outline-none transition-shadow;
+  }
+  
+  /* Dashboard stat card */
+  .stat-card {
+    @apply bg-white p-6 rounded-xl shadow-sm border border-gray-200 
+           transition-all hover:shadow-md;
+  }
+  
+  /* Field card specific */
+  .field-card {
+    @apply bg-white border border-gray-200 rounded-xl p-5 shadow-sm 
+           hover:shadow-md transition-all duration-200;
+  }
+  
+  /* Timeline update item */
+  .timeline-item {
+    @apply border-l-2 border-green-200 pl-3 pb-4 last:pb-0 relative;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    @apply absolute -left-[5px] top-0 w-2 h-2 bg-green-500 rounded-full;
+  }
+}
+
+/* ----- Custom Utilities ----- */
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* Animated background (for loading states) */
+  .bg-pulse {
+    animation: pulse-bg 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Shadow utilities */
+  .shadow-soft {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+  }
+  
+  .shadow-strong {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* ----- Animations ----- */
+@keyframes pulse-bg {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation utility classes */
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+/* ----- Page Transitions ----- */
+.page-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 150ms;
+}
+
+/* ----- Responsive Typography ----- */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  .stat-card {
+    @apply p-4;
+  }
+}
+
+/* ----- Print Styles (optional) ----- */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply bg-white text-black;
+  }
+  
+  .field-card {
+    @apply shadow-none border border-gray-300 break-inside-avoid;
+  }
+}
+
+/* ----- Loading Spinner (custom) ----- */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(22, 163, 74, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin-slow 1s ease-in-out infinite;
+}
+
+/* ----- Map Placeholder (for location display) ----- */
+.map-placeholder {
+  background: linear-gradient(45deg, #e5e7eb 25%, #f3f4f6 25%, #f3f4f6 50%, #e5e7eb 50%, #e5e7eb 75%, #f3f4f6 75%);
+  background-size: 20px 20px;
+}
+
+/* ----- Image Upload Preview ----- */
+.image-preview {
+  @apply relative rounded-lg overflow-hidden border border-gray-200;
+  aspect-ratio: 16 / 9;
+}
+
+.image-preview img {
+  @apply w-full h-full object-cover;
+}
+
+.image-preview-overlay {
+  @apply absolute inset-0 bg-black bg-opacity-40 opacity-0 transition-opacity 
+         flex items-center justify-center;
+}
+
+.image-preview:hover .image-preview-overlay {
+  @apply opacity-100;
+}
+
+/* ----- Tooltip (simple) ----- */
+.tooltip {
+  @apply relative;
+}
+
+.tooltip:hover::after {
+  content: attr(data-tooltip);
+  @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 
+         bg-gray-900 text-white text-xs rounded whitespace-nowrap z-50;
+}
+
+/* ----- Empty State ----- */
+.empty-state {
+  @apply flex flex-col items-center justify-center py-12 px-4 text-center;
+}
+
+.empty-state-icon {
+  @apply w-16 h-16 text-gray-300 mb-4;
+}
+
+.empty-state-title {
+  @apply text-lg font-medium text-gray-900 mb-1;
+}
+
+.empty-state-description {
+  @apply text-sm text-gray-500 max-w-md;
+}
