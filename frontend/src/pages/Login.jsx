@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { Sprout } from 'lucide-react'
-import StyleTest from '../components/StyleTest'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -27,10 +26,10 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-farm">
-      <div className="test-card p-8 rounded-2xl shadow-xl w-full max-w-md">
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md animate-slide-up">
         <div className="flex items-center justify-center mb-6">
           <Sprout className="w-10 h-10 text-green-600 mr-2" />
-          <h1 className="text-2xl font-bold test-gradient">SmartSeason</h1>
+          <h1 className="text-2xl font-bold text-gradient">SmartSeason</h1>
         </div>
         <h2 className="text-xl font-semibold text-gray-700 text-center mb-6">Sign in to your account</h2>
         {error && (
@@ -64,7 +63,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="test-btn w-full py-3"
+            className="btn-primary w-full py-3"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
@@ -74,12 +73,6 @@ export default function Login() {
           <p>Admin: admin@shamba.com / admin123</p>
           <p>Agent: john@shamba.com / agent123</p>
         </div>
-      </div>
-      
-      {/* Style Test Component - Remove this after testing */}
-      <div className="mt-8 border-t pt-8">
-        <h3 className="text-lg font-semibold text-center mb-4">Style Test (Debug)</h3>
-        <StyleTest />
       </div>
     </div>
   )
