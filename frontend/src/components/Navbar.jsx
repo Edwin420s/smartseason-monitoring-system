@@ -18,12 +18,12 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link to={user?.role === 'ADMIN' ? '/admin' : '/agent'} className="flex items-center">
               <Sprout className="w-6 h-6 text-green-600 mr-2" />
-              <span className="text-xl font-bold text-gray-800">SmartSeason</span>
+              <span className="text-xl font-bold text-gradient">SmartSeason</span>
             </Link>
             <div className="hidden md:ml-10 md:flex md:space-x-4">
               <Link
                 to={user?.role === 'ADMIN' ? '/admin' : '/agent'}
-                className="text-gray-700 hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium flex items-center"
+                className="btn-ghost flex items-center"
               >
                 <LayoutDashboard className="w-4 h-4 mr-1" />
                 Dashboard
@@ -31,7 +31,7 @@ export default function Navbar() {
               {user?.role === 'ADMIN' && (
                 <Link
                   to="/fields"
-                  className="text-gray-700 hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium flex items-center"
+                  className="btn-ghost flex items-center"
                 >
                   <Map className="w-4 h-4 mr-1" />
                   All Fields
@@ -45,7 +45,7 @@ export default function Navbar() {
             </span>
             <button
               onClick={handleLogout}
-              className="text-gray-700 hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium flex items-center"
+              className="btn-ghost flex items-center"
             >
               <LogOut className="w-4 h-4 mr-1" />
               Logout

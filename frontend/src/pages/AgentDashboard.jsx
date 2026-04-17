@@ -42,14 +42,14 @@ export default function AgentDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">My Assigned Fields</h1>
+      <h1 className="text-2xl font-bold text-gradient mb-6">My Assigned Fields</h1>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div className="stat-card">
           <div className="flex items-center">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Activity className="w-6 h-6 text-blue-600" />
+            <div className="p-2 bg-green-100 rounded-lg">
+              <Activity className="w-6 h-6 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-500">Total Assigned</p>
@@ -58,7 +58,7 @@ export default function AgentDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div className="stat-card">
           <div className="flex items-center">
             <div className="p-2 bg-green-100 rounded-lg">
               <CheckCircle className="w-6 h-6 text-green-600" />
@@ -70,7 +70,7 @@ export default function AgentDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div className="stat-card">
           <div className="flex items-center">
             <div className="p-2 bg-yellow-100 rounded-lg">
               <AlertTriangle className="w-6 h-6 text-yellow-600" />

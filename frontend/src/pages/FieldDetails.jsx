@@ -46,11 +46,11 @@ export default function FieldDetails() {
         Back
       </Link>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden animate-slide-up">
         <div className="p-6 border-b border-gray-200">
           <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">{field.name}</h1>
+              <h1 className="text-2xl font-bold text-gradient">{field.name}</h1>
               <p className="flex items-center text-gray-500 mt-1">
                 <Sprout className="w-4 h-4 mr-1" />
                 {field.cropType}

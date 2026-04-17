@@ -29,17 +29,17 @@ export default function Fields() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">All Fields</h1>
+        <h1 className="text-2xl font-bold text-gradient">All Fields</h1>
         <Link
           to="/fields/create"
-          className="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-green-700"
+          className="btn-primary flex items-center"
         >
           <Plus className="w-4 h-4 mr-2" />
           New Field
         </Link>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden animate-slide-up">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>

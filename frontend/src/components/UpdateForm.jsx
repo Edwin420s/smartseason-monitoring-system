@@ -61,11 +61,11 @@ export default function UpdateForm({ fieldId, userId, onSuccess, onCancel }) {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-lg mx-auto">
+    <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-lg mx-auto animate-slide-up">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-gray-900">Log Field Update</h2>
+        <h2 className="text-xl font-bold text-gradient">Log Field Update</h2>
         {onCancel && (
-          <button onClick={onCancel} className="text-gray-400 hover:text-gray-600">
+          <button onClick={onCancel} className="btn-ghost">
             <X className="w-5 h-5" />
           </button>
         )}
@@ -77,7 +77,7 @@ export default function UpdateForm({ fieldId, userId, onSuccess, onCancel }) {
           <select
             value={stage}
             onChange={(e) => setStage(e.target.value)}
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+            className="input-field"
           >
             <option value="PLANTED">Planted</option>
             <option value="GROWING">Growing</option>
@@ -93,14 +93,14 @@ export default function UpdateForm({ fieldId, userId, onSuccess, onCancel }) {
             onChange={(e) => setNotes(e.target.value)}
             rows="3"
             placeholder="e.g., Leaves looking yellow, requires fertilizer..."
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+            className="input-field"
           ></textarea>
         </div>
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">Visual Evidence</label>
           <div className="flex items-center justify-center w-full">
-            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <Camera className="w-8 h-8 mb-2 text-gray-400" />
                 <p className="text-sm text-gray-500">
@@ -128,7 +128,7 @@ export default function UpdateForm({ fieldId, userId, onSuccess, onCancel }) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3 px-4 text-white bg-green-600 rounded-lg font-medium hover:bg-green-700 disabled:bg-green-400 transition-colors"
+          className="btn-primary w-full py-3 px-4"
         >
           {isSubmitting ? 'Submitting...' : 'Submit Update'}
         </button>
