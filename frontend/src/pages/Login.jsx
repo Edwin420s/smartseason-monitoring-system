@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { Sprout } from 'lucide-react'
+import StyleTest from '../components/StyleTest'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -73,6 +74,12 @@ export default function Login() {
           <p>Admin: admin@shamba.com / admin123</p>
           <p>Agent: john@shamba.com / agent123</p>
         </div>
+      </div>
+      
+      {/* Style Test Component - Remove this after testing */}
+      <div className="mt-8 border-t pt-8">
+        <h3 className="text-lg font-semibold text-center mb-4">Style Test (Debug)</h3>
+        <StyleTest />
       </div>
     </div>
   )
