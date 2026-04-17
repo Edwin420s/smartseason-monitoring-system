@@ -4,7 +4,7 @@ import { Sprout, Calendar, MapPin } from 'lucide-react'
 
 export default function FieldCard({ field, onUpdateClick }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+    <div className="field-card card-hover">
       <div className="flex justify-between items-start mb-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">{field.name}</h3>

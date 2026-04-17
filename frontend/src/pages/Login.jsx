@@ -25,11 +25,11 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-100">
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-farm">
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md animate-slide-up">
         <div className="flex items-center justify-center mb-6">
           <Sprout className="w-10 h-10 text-green-600 mr-2" />
-          <h1 className="text-2xl font-bold text-gray-800">SmartSeason</h1>
+          <h1 className="text-2xl font-bold text-gradient">SmartSeason</h1>
         </div>
         <h2 className="text-xl font-semibold text-gray-700 text-center mb-6">Sign in to your account</h2>
         {error && (
@@ -44,7 +44,7 @@ export default function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+              className="input-field"
               placeholder="admin@shamba.com"
               required
             />
@@ -55,7 +55,7 @@ export default function Login() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+              className="input-field"
               placeholder="••••••••"
               required
             />
@@ -63,7 +63,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:bg-green-400 transition-colors"
+            className="btn-primary w-full py-3"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>

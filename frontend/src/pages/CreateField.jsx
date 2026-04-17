@@ -68,8 +68,8 @@ export default function CreateField() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Create New Field</h1>
-      <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <h1 className="text-2xl font-bold text-gradient mb-6">Create New Field</h1>
+      <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 animate-slide-up">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">Field Name</label>
           <input
@@ -77,7 +77,7 @@ export default function CreateField() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+            className="input-field"
             required
           />
         </div>
