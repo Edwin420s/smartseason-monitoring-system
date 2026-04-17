@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { mockApi } from '../services/mockApi'
+import { apiService } from '../services/api'
 import FieldCard from '../components/FieldCard'
 import { Plus, AlertTriangle, CheckCircle, Activity } from 'lucide-react'
 
@@ -13,13 +13,18 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [statsData, fieldsData] = await Promise.all([
-        mockApi.getAdminStats(),
-        mockApi.getFields(user.id, 'ADMIN')
-      ])
-      setStats(statsData)
-      setFields(fieldsData)
-      setLoading(false)
+      try {
+        const [statsData, fieldsData] = await Promise.all([
+          apiService.getAdminStats(),
+          apiService.getFields(user.id, 'ADMIN')
+        ])
+        setStats(statsData.summary || statsData)
+        setFields(fieldsData.data || fieldsData)
+      } catch (error) {
+        console.error('Failed to fetch dashboard data:', error)
+      } finally {
+        setLoading(false)
+      }
     }
     fetchData()
   }, [user.id])

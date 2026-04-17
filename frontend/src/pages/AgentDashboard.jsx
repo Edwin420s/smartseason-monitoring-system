@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { mockApi } from '../services/mockApi'
+import { apiService } from '../services/api'
 import FieldCard from '../components/FieldCard'
 import UpdateForm from '../components/UpdateForm'
 import { Activity, CheckCircle, AlertTriangle } from 'lucide-react'
@@ -13,13 +13,18 @@ export default function AgentDashboard() {
   const [showUpdateForm, setShowUpdateForm] = useState(null)
 
   const fetchData = async () => {
-    const [statsData, fieldsData] = await Promise.all([
-      mockApi.getAgentStats(user.id),
-      mockApi.getFields(user.id, 'AGENT')
-    ])
-    setStats(statsData)
-    setFields(fieldsData)
-    setLoading(false)
+    try {
+      const [statsData, fieldsData] = await Promise.all([
+        apiService.getAgentStats(user.id),
+        apiService.getFields(user.id, 'AGENT')
+      ])
+      setStats(statsData.summary || statsData)
+      setFields(fieldsData.data || fieldsData)
+    } catch (error) {
+      console.error('Failed to fetch agent data:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {

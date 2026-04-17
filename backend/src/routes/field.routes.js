@@ -7,6 +7,7 @@ const {
   updateField,
   deleteField,
 } = require('../controllers/field.controller');
+const { getAgents } = require('../controllers/user.controller');
 const { protect } = require('../middleware/auth.middleware');
 const { authorize } = require('../middleware/role.middleware');
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { mockApi } from '../services/mockApi'
+import { apiService } from '../services/api'
 import StatusBadge from '../components/StatusBadge'
 import { Plus } from 'lucide-react'
 
@@ -11,10 +11,17 @@ export default function Fields() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    mockApi.getFields(user.id, 'ADMIN').then(data => {
-      setFields(data)
-      setLoading(false)
-    })
+    const fetchFields = async () => {
+      try {
+        const data = await apiService.getFields(user.id, 'ADMIN')
+        setFields(data.data || data)
+      } catch (error) {
+        console.error('Failed to fetch fields:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchFields()
   }, [user.id])
 
   if (loading) return <div className="p-8">Loading...</div>

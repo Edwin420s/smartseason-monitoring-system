@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { mockApi } from '../services/mockApi'
+import { apiService } from '../services/api'
 import StatusBadge from '../components/StatusBadge'
 import UpdateForm from '../components/UpdateForm'
 import { Calendar, MapPin, User, Sprout, ChevronLeft } from 'lucide-react'
@@ -14,9 +14,14 @@ export default function FieldDetails() {
   const [showUpdateForm, setShowUpdateForm] = useState(false)
 
   const fetchField = async () => {
-    const data = await mockApi.getField(id)
-    setField(data)
-    setLoading(false)
+    try {
+      const data = await apiService.getField(id)
+      setField(data.data || data)
+    } catch (error) {
+      console.error('Failed to fetch field:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {

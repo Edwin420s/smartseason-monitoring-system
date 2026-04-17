@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Camera, MapPin, Loader2, X } from 'lucide-react'
-import { mockApi } from '../services/mockApi'
+import { apiService } from '../services/api'
 
 export default function UpdateForm({ fieldId, userId, onSuccess, onCancel }) {
   const [stage, setStage] = useState('GROWING')
@@ -43,23 +43,18 @@ export default function UpdateForm({ fieldId, userId, onSuccess, onCancel }) {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // In a real app, we'd upload the image to Cloudinary/S3.
-    // For mock, we just store a placeholder URL.
-    const imageUrl = image ? URL.createObjectURL(image) : null
-
     try {
-      await mockApi.addUpdate(fieldId, {
-        updatedById: userId,
+      await apiService.addUpdate(fieldId, {
         stage,
         notes,
         latitude: location?.lat,
         longitude: location?.lng,
-        imageUrl
+        image
       })
       onSuccess()
     } catch (error) {
       console.error('Submission failed', error)
-      alert('Failed to submit update')
+      alert(error.response?.data?.error || 'Failed to submit update')
     } finally {
       setIsSubmitting(false)
     }

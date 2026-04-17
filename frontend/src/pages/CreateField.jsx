@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { mockApi } from '../services/mockApi'
+import { apiService } from '../services/api'
 import { MapPin } from 'lucide-react'
 
 export default function CreateField() {
@@ -19,7 +19,15 @@ export default function CreateField() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    mockApi.getAgents().then(setAgents)
+    const fetchAgents = async () => {
+      try {
+        const data = await apiService.getAgents()
+        setAgents(data.data || data)
+      } catch (error) {
+        console.error('Failed to fetch agents:', error)
+      }
+    }
+    fetchAgents()
   }, [])
 
   const handleChange = (e) => {
@@ -45,15 +53,14 @@ export default function CreateField() {
     e.preventDefault()
     setLoading(true)
     try {
-      await mockApi.createField({
+      await apiService.createField({
         ...formData,
-        createdById: user.id,
         currentStage: 'PLANTED'
       })
       navigate('/fields')
     } catch (error) {
       console.error('Failed to create field', error)
-      alert('Failed to create field')
+      alert(error.response?.data?.error || 'Failed to create field')
     } finally {
       setLoading(false)
     }
