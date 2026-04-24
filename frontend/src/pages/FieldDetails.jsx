@@ -37,7 +37,7 @@ export default function FieldDetails() {
   if (!field) return <div className="p-8">Field not found</div>
 
   const isAgentAssigned = user.role === 'AGENT' && field.assignedAgentId === user.id
-  const canUpdate = user.role === 'ADMIN' || isAgentAssigned
+  const canUpdate = isAgentAssigned
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
