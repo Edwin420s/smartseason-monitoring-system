@@ -29,11 +29,7 @@ app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/fields', require('./routes/field.routes'));
 app.use('/api/updates', require('./routes/update.routes'));
 app.use('/api/dashboard', require('./routes/dashboard.routes'));
-
-// Health check
-app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'OK', message: 'SmartSeason API is running' });
-});
+app.use('/api/health', require('./routes/health.routes'));
 
 // 404 handler
 app.use((req, res) => {
