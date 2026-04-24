@@ -214,7 +214,7 @@ npm run dev
 
 ## 🚀 Live Deployment
 
-**Frontend**: [https://smartseason-frontend.vercel.app](https://smartseason-frontend.vercel.app)
+**Frontend**: [https://smartseasonart.netlify.app](https://smartseasonart.netlify.app)
 **Backend**: [https://amused-insight-production.up.railway.app](https://amused-insight-production.up.railway.app)
 
 ### ✅ Deployment Status
@@ -228,7 +228,7 @@ npm run dev
 - **Agent**: john@shamba.com / agent123
 
 ### **Deployment Architecture**
-- **Frontend**: Vercel (React + Vite)
+- **Frontend**: Netlify (React + Vite)
 - **Backend**: Railway (Node.js + Express)
 - **Database**: PostgreSQL (Neon)
 - **Images**: Cloudinary (CDN storage)
