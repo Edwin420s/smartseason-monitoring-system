@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
+const { requestLogger, errorLogger } = require('./middleware/logging.middleware');
+const { generalLimiter } = require('./middleware/rateLimit.middleware');
 
 dotenv.config();
 
@@ -11,6 +13,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Rate limiting middleware
+app.use('/api', generalLimiter.middleware());
+
+// Logging middleware
+app.use(requestLogger);
 
 // Serve static files for uploaded images (if using local storage)
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
@@ -32,10 +40,11 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
+// Error logging middleware
+app.use(errorLogger);
+
 // Global error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Internal server error' });
-});
+const { globalErrorHandler } = require('./utils/errorHandler');
+app.use(globalErrorHandler);
 
 module.exports = app;

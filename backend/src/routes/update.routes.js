@@ -3,12 +3,13 @@ const router = express.Router();
 const { logUpdate, getFieldUpdates } = require('../controllers/update.controller');
 const { protect } = require('../middleware/auth.middleware');
 const upload = require('../middleware/upload.middleware');
+const { updateLimiter } = require('../middleware/rateLimit.middleware');
 
 // All routes require authentication
 router.use(protect);
 
 // Field update routes
-router.post('/field/:fieldId', upload.single('image'), logUpdate);
+router.post('/field/:fieldId', upload.single('image'), updateLimiter.middleware(), logUpdate);
 router.get('/field/:fieldId', getFieldUpdates);
 
 module.exports = router;

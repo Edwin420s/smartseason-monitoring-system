@@ -57,18 +57,17 @@ const getAdminDashboard = async (req, res) => {
 
     res.json({
       success: true,
-      data: {
-        summary: {
-          totalFields,
-          activeFields,
-          atRiskFields,
-          completedFields,
-        },
-        fieldsByStage,
-        recentUpdates,
-        agentSummary,
-        fields: fieldsWithStatus, // full list for table
+      summary: {
+        totalFields,
+        active: activeFields,
+        atRisk: atRiskFields,
+        completed: completedFields,
+        agents: agentSummary.length,
       },
+      fieldsByStage,
+      recentUpdates,
+      agentSummary,
+      fields: fieldsWithStatus, // full list for table
     });
   } catch (error) {
     console.error('Admin dashboard error:', error);
@@ -105,16 +104,14 @@ const getAgentDashboard = async (req, res) => {
 
     res.json({
       success: true,
-      data: {
-        summary: {
-          totalAssigned,
-          active,
-          atRisk,
-          completed,
-        },
-        needsAttention,
-        fields: fieldsWithStatus,
+      summary: {
+        totalAssigned,
+        active,
+        atRisk,
+        completed,
       },
+      needsAttention,
+      fields: fieldsWithStatus,
     });
   } catch (error) {
     console.error('Agent dashboard error:', error);

@@ -76,7 +76,7 @@ export const apiService = {
   // Fields
   getFields: async (userId, role) => {
     const response = await api.get('/fields');
-    let fields = response.data;
+    let fields = response.data.data || response.data;
     
     // Filter by role if AGENT
     if (role === 'AGENT') {
@@ -98,7 +98,7 @@ export const apiService = {
 
   getField: async (fieldId) => {
     const response = await api.get(`/fields/${fieldId}`);
-    const field = response.data;
+    const field = response.data.data || response.data;
     
     // Add computed status
     const lastUpdate = field.updates?.[0];
@@ -156,7 +156,7 @@ export const apiService = {
   // Agents
   getAgents: async () => {
     const response = await api.get('/users/agents');
-    return response.data;
+    return response.data.data || response.data;
   },
 
   // Dashboard
