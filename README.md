@@ -215,7 +215,13 @@ npm run dev
 ## 🚀 Live Deployment
 
 **Frontend**: [https://smartseason-frontend.vercel.app](https://smartseason-frontend.vercel.app)
-**Backend**: [https://smartseason-backend-production.up.railway.app](https://smartseason-backend-production.up.railway.app)
+**Backend**: [https://amused-insight-production.up.railway.app](https://amused-insight-production.up.railway.app)
+
+### ✅ Deployment Status
+- **Database**: Connected to Neon PostgreSQL
+- **Authentication**: Working (Admin & Agent logins functional)
+- **API Endpoints**: Fully operational
+- **Health Check**: ✅ Passing
 
 ### **Demo Credentials**
 - **Admin**: admin@shamba.com / admin123
@@ -224,7 +230,7 @@ npm run dev
 ### **Deployment Architecture**
 - **Frontend**: Vercel (React + Vite)
 - **Backend**: Railway (Node.js + Express)
-- **Database**: PostgreSQL (Railway Managed)
+- **Database**: PostgreSQL (Neon)
 - **Images**: Cloudinary (CDN storage)
 - **API**: RESTful with JWT authentication
 
